@@ -1,3 +1,6 @@
+from array import array
+from multiprocessing.sharedctypes import Value
+
 
 print("Hello World")
 print("*"*10)
@@ -125,7 +128,7 @@ PI = 3.14
 # print(round(PI//1))
 
 ################## Type Conversion #################
-x = int(input("X:"))
+# x = int(input("X:"))
 # Expilicitly typed as python doesn't perform type conversions for us
 print(x+1)
 
@@ -181,12 +184,12 @@ message = "Eligible" if 18 <= age < 65 else "Not Eligible"
 
 names = ["John", "Marry"]
 
-for name in names:
-    if(name.startswith("J")):
-        print("Found")
-        break
-else:
-    print("Not Found")
+# for name in names:
+#     if(name.startswith("J")):
+#         print("Found")
+#         break
+# else:
+#     print("Not Found")
 
 ################## While Loops #################
 
@@ -194,7 +197,8 @@ guess = 0
 answer = 5
 
 while answer != guess:
-    guess = int(input("Guess: "))
+    # guess = int(input("Guess: "))
+    pass
 
 else:
     pass
@@ -202,33 +206,33 @@ else:
 ################# Function #################
 
 
-def increment(number: int, by: int = 1) -> tuple:
-    return (number, number+by)
+# def increment(number: int, by: int = 1) -> tuple:
+#     return (number, number+by)
 
 
-print(increment(2, by=3))
-print(increment(2))
+# print(increment(2, by=3))
+# print(increment(2))
 
 ################# Arguments #################
 
 
-def multiple(*list):
-    total = 1
-    for x in list:
-        total *= x
-    return total
+# def multiple(*list):
+#     total = 1
+#     for x in list:
+#         total *= x
+#     return total
 
 
 print("start")
-print(multiple(1, 2, 3, 4, 6))
+# print(multiple(1, 2, 3, 4, 6))
 print("end")
 
 
-def save_user(**user):
-    print(user)
+# def save_user(**user):
+#     print(user)
 
 
-save_user(id=1, name="omkar")
+# save_user(id=1, name="omkar")
 
 ################ Scope #################
 
@@ -236,10 +240,10 @@ save_user(id=1, name="omkar")
 message = "a"
 
 
-def greet():
-    if True:
-        message = "a"
-    print(message)
+# def greet():
+#     if True:
+#         message = "a"
+#     print(message)
 
 
 ################## Lists #################
@@ -384,3 +388,101 @@ list1 = [1, 2, 3]
 list2 = [10, 20, 30]
 
 zipper = list(zip(list1, list2))  # [(1,10),(2,20),(3,30)]
+
+# Stacks
+_stack = []
+# push
+_stack.append(1)
+# pop
+_stack.pop()
+
+
+# Queues
+# Enqueue/ Add
+# Dequeue/ Remove
+
+# Tuples
+# -Read Only List
+
+tup_point = (1, 2)  # class 'tuple'
+list_to_tuple = list([1, 2, 3])  # (1,2,3)
+
+
+# Thumb Rule- if we dont want to change the list by any chance we should use tuple
+
+# Swapping Variables
+x = 10
+y = 12
+
+print(x, y)
+z = x
+x = y
+y = z
+print(x, y)
+
+x, y = y, x
+# This will give the same result
+
+# Arrays
+# number = array('i', [1, 2, 3])
+
+# Sets - List without any duplicates
+
+first = set([1, 1, 2, 2, 4, 3])
+second = {1, 5}
+
+_union = first | second         # {1,2,3,4,5}
+_intersection = first & second  # {1}
+_difference = first - second    # {2,3,4}
+_sematic_difference = first ^ second
+# {2,3,4,5} (In first or second but not in both)
+
+# Sets cannot be accessed like set[0] as they are unordered
+
+# Dictionary
+# - Key: Value pair
+
+point = {"x": 1, "y": 2}
+# Dictionary can be declared as follows too
+point = dict(x=1, y=2)
+
+print(point["x"])  # 1
+point["x"] = 10
+print(point)  # {"x": 10, "y": 2}
+
+# we can also use get()/ set() methods of dictionaries
+
+point.get('x')  # this returns 10
+point.get('a')  # this returns None as a is not in point
+point.get('a', 0)  # this returns 0 as a is not in point
+
+del point['x']
+print(point)  # {"y": 2}
+
+for key in point:
+    print(key, point[key])
+
+for key, value in point.items:
+    print(key, value)
+
+# Comprehension in sets/ dictionary
+# Like we generate list by comprehension of [expression for item in items] we can generate
+# sets/dictionaries but for tuples we get some runtime errors
+
+# Generator Expression
+values = (x*2 for x in range(5))
+print(values)
+# generator object tht is iterable but not stored
+# in memory but is generated when we need it so memory is saved
+
+# Unpacking Operator
+nums = [1, 2, 3]
+print(*nums)  # 1 2 3
+# We can unpack any iterable using * operator
+
+# Unpacking Dictionary
+first = {'x': 1}
+second = {'x': 10, 'y': 2}
+combine = {**first, **second, "z": 1}
+# Combine = {x:10,y:2,z:1}
+# #x was in both it'll take the last value for the same key
